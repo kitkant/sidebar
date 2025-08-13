@@ -22,8 +22,9 @@ const bottomRoutes = [
 ]
 
 const Sidebar = props => {
+
 	let timeoutId
-	const [color, setColor] = useState(props)
+	const [color, setColor] = useState(props.color)
 	const [isOpened, setIsOpened] = useState(true)
 	const [isDisplayItem, setIsDisplayItem] = useState(false)
 	const [activeTab, setActiveTab] = useState('/')
@@ -59,12 +60,13 @@ const Sidebar = props => {
 					</Item>
 				</LogoContainer>
 				<ArrowSwitch
+					className={isOpened ? '' : 'close'}
 					onClick={() => {
 						toggleSidebar()
 						handlerDisplayItem()
 					}}
 				>
-					<FontAwesomeIcon icon={isOpened ? 'angle-left' : 'angle-right'} />
+					<FontAwesomeIcon icon={'angle-left'} />
 				</ArrowSwitch>
 			</LogoWrapper>
 			<BtnWrapper $isOpened={isOpened}>
@@ -226,10 +228,23 @@ const ArrowSwitch = styled.div`
 	align-items: center;
 	position: absolute;
 	top: 50%;
-	transform: translateY(-50%);
+	transform:  translateY(-50%);
 	right: -36px;
+	transition: all 0.3s ease;
+	& svg{
+		transition: all 0.3s ease;
+		transform: rotate(0deg);
+		}
+	&.close{
+		right: -66px;
+		& svg{
+		transition: all 0.5s ease;
+		transform: rotate(180deg);
+		}
+	}
 	& path {
 		fill: #000;
+
 	}
 `
 const Btn = styled.button`
