@@ -214,6 +214,9 @@ const BtnContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	& svg{
+		
+	}
 `
 
 const ArrowSwitch = styled.div`
@@ -272,6 +275,14 @@ const Btn = styled.button`
 	& svg {
 		width: 24px;
 		height: 24px;
+		color: ${props =>
+				props.$theme === 'dark'
+					? props.$active
+						? 'var(--color-text-dark-active)'
+						: 'var(--color-text-dark-hover)'
+					: props.$active
+					? 'var(--color-text-light-active)'
+					: 'var(--color-text-light-hover)'};
 	}
 
 	&:hover {
